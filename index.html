@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.B.S International School</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="top-section">
+            <img src="logo.JPEG" alt="School Logo" class="school-logo">
+
+            <h1 class="title">B.B.S International School</h1>
+            <p class="address">Gohri, Phaphamau, Prayagraj</p>
+
+            <!-- Slideshow Container -->
+            <div class="slideshow-container">
+                <img src="s1.JPG" class="slide fade">
+                <img src="s.JPG" class="slide fade">
+                <img src="s3.JPG" class="slide fade">
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="admission.html">Admissions</a></li>
+            <li><a href="facility.html">Facilities</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+<!-- CHATBOT BUTTON WITH ROBOT ICON -->
+<div class="chatbot-btn" onclick="openChatbot()">
+    <img src="logo.jpeg" alt="Chatbot" style="width:35px; margin-top:12px;">
+</div>
+
+<!-- CHATBOT WINDOW -->
+<div class="chatbot-box" id="chatbot">
+    <div class="chatbot-header">
+        School Assistant
+        <span onclick="closeChatbot()" style="cursor:pointer; float:right;">✖</span>
+    </div>
+
+    <div class="chatbot-body" id="chat-body">
+        <div class="bot-msg">Hello! How can I assist you today?</div>
+    </div>
+
+    <div class="chatbot-input-box">
+        <input type="text" id="userInput" placeholder="Type your question..." 
+               onkeydown="if(event.key==='Enter'){sendMessage()}">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<style>
+/* Chatbot Button – Right Side */
+.chatbot-btn {
+    position: fixed;
+    top: 60%;
+    right: 20px;
+    background: #003366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+/* Chatbot Window – Right Side */
+.chatbot-box {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.chatbot-header {
+    background: #003366;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.chatbot-body {
+    padding: 10px;
+    height: 280px;
+    overflow-y: auto;
+    background: #f2f2f2;
+}
+
+.bot-msg {
+    background: #003366;
+    color: white;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.user-msg {
+    background: #ddd;
+    color: black;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.chatbot-input-box {
+    display: flex;
+}
+
+.chatbot-input-box input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.chatbot-input-box button {
+    padding: 10px;
+    border: none;
+    background: #003366;
+    color: white;
+    cursor: pointer;
+}
+</style>
+
+<script>
+function openChatbot() {
+    document.getElementById("chatbot").style.display = "flex";
+}
+
+function closeChatbot() {
+    document.getElementById("chatbot").style.display = "none";
+}
+
+function sendMessage() {
+    let input = document.getElementById("userInput").value;
+    if (input.trim() === "") return;
+
+    // Show user message
+    document.getElementById("chat-body").innerHTML += 
+        `<div class='user-msg'>${input}</div>`;
+
+    document.getElementById("userInput").value = "";
+
+    let reply = getBotReply(input.toLowerCase());
+
+    setTimeout(() => {
+        document.getElementById("chat-body").innerHTML += 
+            `<div class='bot-msg'>${reply}</div>`;
+        document.getElementById("chat-body").scrollTop = 
+            document.getElementById("chat-body").scrollHeight;
+    }, 500);
+}
+
+function getBotReply(msg) {
+
+    if (msg.includes("fee") || msg.includes("fees"))
+        return "You can check the fee structure on the Admission page.";
+
+    if (msg.includes("admission"))
+        return "Admission is open! Please check the Admission page.";
+
+    if (msg.includes("timing") || msg.includes("time"))
+        return "School timing is 9:00 AM to 2:00 PM.";
+
+    if (msg.includes("location") || msg.includes("address"))
+        return "We are located at Gohri, Phaphamau, Prayagraj.";
+
+    if (msg.includes("contact") || msg.includes("phone"))
+        return "You can contact us at +91 7084157937.";
+
+
+    return "Sorry! I didn't understand that. Try asking about admission, fees, timing or contact.";
+}
+</script>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>Welcome to B.B.S International School</h2>
+        <p>
+            B.B.S International School, located in Gohri Phaphamau Prayagraj, 
+            provides high-quality education with discipline, value-based learning, 
+            and complete development of students.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 B.B.S International School, Gohri Phaphamau Prayagraj</p>
+    </footer>
+
+    <script src="script.js"></script>
+<!-- Messages Section -->
+<section class="messages">
+
+    <!-- About Us Message -->
+    <div class="message-card">
+        <h2>About Us</h2>
+        <p>
+            B.B.S International School is committed to transforming young minds 
+            into confident, disciplined, and responsible citizens. 
+            Our focus is on quality education, modern learning methods, 
+            and an environment that encourages creativity, leadership, and excellence.
+        </p>
+    </div>
+
+    <!-- Manager Message -->
+    <div class="message-card">
+        <h2>Manager's Message</h2>
+        <p>
+            At B.B.S International School, we believe education is the foundation 
+            of a strong society. Our aim is to provide every child with the 
+            opportunity to learn, grow, and shine.  
+            We ensure that students get the best academic support along with moral values.
+            <br><br><strong>- Manager, B.B.S International School</strong>
+        </p>
+    </div>
+
+    <!-- Principal Message -->
+    <div class="message-card">
+        <h2>Principal's Message</h2>
+        <p>
+            Dear Students & Parents,  
+            It is our mission to create a learning environment where every student 
+            feels motivated to achieve their highest potential. We focus on discipline, 
+            character building, and modern education that prepares students for the future.  
+            Together, let us make education meaningful and inspiring.
+            <br><br><strong>- Principal, B.B.S International School</strong>
+        </p>
+    </div>
+
+</section>
+
+</body>
+</html>
